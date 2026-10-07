@@ -12,10 +12,10 @@ jobs:
     - name: Setup Minikube
       uses: medyagh/setup-minikube@latest
     
-    - name: Build Docker Image
+    - name: Build and Load Docker Image
       run: |
-        eval $(minikube -p minikube docker-env)
         docker build -t devops-lab-app ./app
+        minikube image load devops-lab-app
         
     - name: Deploy to Kubernetes
       run: |
